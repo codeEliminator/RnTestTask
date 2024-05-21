@@ -18,7 +18,7 @@ if (Platform.OS === 'android' && UIManager.setLayoutAnimationEnabledExperimental
 
 interface ExpandableSectionProps {
   title: string
-  children?: ReactNode
+  children: ReactNode
   content?: string
 }
 
@@ -62,7 +62,7 @@ const ExpandableSection: React.FC<ExpandableSectionProps> = ({ title, children, 
         {isExpanded && (
           <View style={styles.content}>
             {content && <Text>{content}</Text>}
-            <View style={styles.childrenContainer}>{children}</View>
+            <View style={[styles.childrenContainer, {marginTop: content ? 25 : 5}]}>{children}</View>
           </View>
         )}
       </View>
@@ -100,11 +100,12 @@ const styles = StyleSheet.create({
   content: {
     padding: 15,
     display: 'flex',
-    flexDirection: 'column'
+    flexDirection: 'column',
   },
   childrenContainer: {
+    flexWrap: 'wrap',
     flexDirection: 'row',
-    marginTop: 35
+    
   }
 })
 
